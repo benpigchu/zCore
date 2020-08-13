@@ -76,10 +76,14 @@
 <span id="76">76</span>
 <span id="77">77</span>
 <span id="78">78</span>
+<span id="79">79</span>
+<span id="80">80</span>
+<span id="81">81</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="kw">use</span> {<span class="kw">super</span>::<span class="kw-2">*</span>, <span class="ident">zircon_object</span>::<span class="ident">ipc</span>::<span class="ident">Fifo</span>};
 
 <span class="kw">impl</span> <span class="ident">Syscall</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span> {
+    <span class="doccomment">/// Creates a fifo, which is actually a pair of fifos of `elem_count` entries of `elem_size` bytes.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">sys_fifo_create</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         <span class="ident">elem_count</span>: <span class="ident">usize</span>,
@@ -107,6 +111,7 @@
         <span class="prelude-val">Ok</span>(())
     }
 
+    <span class="doccomment">/// Write data to a fifo.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">sys_fifo_write</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         <span class="ident">handle_value</span>: <span class="ident">HandleValue</span>,
@@ -130,6 +135,7 @@
         <span class="prelude-val">Ok</span>(())
     }
 
+    <span class="doccomment">/// Read data from a fifo.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">sys_fifo_read</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         <span class="ident">handle_value</span>: <span class="ident">HandleValue</span>,
@@ -149,11 +155,11 @@
         <span class="kw">let</span> <span class="ident">fifo</span> <span class="op">=</span> <span class="ident">proc</span>.<span class="ident">get_object_with_rights</span>::<span class="op">&lt;</span><span class="ident">Fifo</span><span class="op">&gt;</span>(<span class="ident">handle_value</span>, <span class="ident">Rights</span>::<span class="ident">READ</span>)<span class="question-mark">?</span>;
         <span class="comment">// TODO: uninit buffer</span>
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">data</span> <span class="op">=</span> <span class="macro">vec</span><span class="macro">!</span>[<span class="number">0</span>; <span class="ident">elem_size</span> <span class="op">*</span> <span class="ident">count</span>];
-        <span class="kw">let</span> <span class="ident">actual_count</span> <span class="op">=</span> <span class="ident">fifo</span>.<span class="ident">read</span>(<span class="ident">elem_size</span>, <span class="ident">count</span>, <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">data</span>)<span class="question-mark">?</span>;
+        <span class="kw">let</span> <span class="ident">actual_count</span> <span class="op">=</span> <span class="ident">fifo</span>.<span class="ident">read</span>(<span class="ident">elem_size</span>, <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">data</span>, <span class="ident">count</span>)<span class="question-mark">?</span>;
         <span class="ident">actual_count_ptr</span>.<span class="ident">write_if_not_null</span>(<span class="ident">actual_count</span>)<span class="question-mark">?</span>;
         <span class="ident">user_bytes</span>.<span class="ident">write_array</span>(<span class="kw-2">&amp;</span><span class="ident">data</span>)<span class="question-mark">?</span>;
         <span class="prelude-val">Ok</span>(())
     }
 }
 </pre></div>
-</section><section id="search" class="content hidden"></section><section class="footer"></section><script>window.rootPath = "../../";window.currentCrate = "zircon_syscall";</script><script src="../../aliases.js"></script><script src="../../main.js"></script><script src="../../source-script.js"></script><script src="../../source-files.js"></script><script defer src="../../search-index.js"></script></body></html>
+</section><section id="search" class="content hidden"></section><section class="footer"></section><script>window.rootPath = "../../";window.currentCrate = "zircon_syscall";</script><script src="../../main.js"></script><script src="../../source-script.js"></script><script src="../../source-files.js"></script><script defer src="../../search-index.js"></script></body></html>

@@ -31,6 +31,9 @@
 <span id="31">31</span>
 <span id="32">32</span>
 <span id="33">33</span>
+<span id="34">34</span>
+<span id="35">35</span>
+<span id="36">36</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="doccomment">//! Zircon kernel objects</span>
 
@@ -44,6 +47,7 @@
 <span class="attribute">#![<span class="ident">feature</span>(<span class="ident">ptr_offset_from</span>)]</span>
 <span class="attribute">#![<span class="ident">feature</span>(<span class="ident">range_is_empty</span>)]</span>
 <span class="attribute">#![<span class="ident">feature</span>(<span class="ident">new_uninit</span>)]</span>
+<span class="attribute">#![<span class="ident">feature</span>(<span class="ident">const_in_array_repeat_expressions</span>)]</span>
 
 <span class="kw">extern</span> <span class="kw">crate</span> <span class="ident">alloc</span>;
 
@@ -57,6 +61,8 @@
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">debuglog</span>;
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">dev</span>;
 <span class="kw">mod</span> <span class="ident">error</span>;
+<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;hypervisor&quot;</span>)]</span>
+<span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">hypervisor</span>;
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">ipc</span>;
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">object</span>;
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">signal</span>;
@@ -66,4 +72,4 @@
 
 <span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span>::<span class="ident">error</span>::<span class="kw-2">*</span>;
 </pre></div>
-</section><section id="search" class="content hidden"></section><section class="footer"></section><script>window.rootPath = "../../";window.currentCrate = "zircon_object";</script><script src="../../aliases.js"></script><script src="../../main.js"></script><script src="../../source-script.js"></script><script src="../../source-files.js"></script><script defer src="../../search-index.js"></script></body></html>
+</section><section id="search" class="content hidden"></section><section class="footer"></section><script>window.rootPath = "../../";window.currentCrate = "zircon_object";</script><script src="../../main.js"></script><script src="../../source-script.js"></script><script src="../../source-files.js"></script><script defer src="../../search-index.js"></script></body></html>
